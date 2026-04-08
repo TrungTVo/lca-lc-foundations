@@ -82,31 +82,6 @@ pip install -r requirements.txt
 
 </details>
 
-### Setup Verification
-
-After completing the Setup section, we recommend you run the following command to verify your environment.
-
-<details open>
-<summary>Using uv</summary>
-
-```bash
-uv run python env_utils.py
-```
-
-</details>
-
-<details>
-<summary>Using pip</summary>
-
-```bash
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-python env_utils.py
-```
-
-</details>
-
-[If the script flags issues, see this section below.](#setup-verification-issues)
-
 ### Run Notebooks [More Info](#development-environment)
 
 <details open>
@@ -194,19 +169,6 @@ This repository contains three Modules that serve as introductions to many of La
 **Configuration Issues and Solutions:**
 
 <details>
-<summary>ImportError when running env_utils.py</summary>
-
-If you see an error like `ModuleNotFoundError: No module named 'dotenv'`, you're likely running Python outside the virtual environment.
-
-**Solution:**
-- Use `uv run python env_utils.py` (recommended), or
-- Activate the virtual environment first:
-  - macOS/Linux: `source .venv/bin/activate`
-  - Windows: `.venv\Scripts\activate`
-
-</details>
-
-<details>
 <summary>Environment Variable Conflicts</summary>
 
 If you see a warning about "ENVIRONMENT VARIABLE CONFLICTS DETECTED", you have API keys set in your system environment that differ from your .env file. Since `load_dotenv()` doesn't override existing variables by default, your system values will be used.
@@ -288,14 +250,9 @@ Tavily is a search provider that returns search results in an LLM-friendly way. 
 
 For more information on LangSmith, see our docs [here](https://docs.langchain.com/langsmith/home).
 
-**Note:** If you enable LangSmith tracing by setting `LANGSMITH_TRACING=true` in your .env file, make sure you have a valid `LANGSMITH_API_KEY` set. The environment verification script (`env_utils.py`) will warn you if tracing is enabled without a valid key.
-
 ### Environment Variables
 
 This course uses the [dotenv](https://pypi.org/project/python-dotenv) module to read key-value pairs from the .env file and set them in the environment in the Jupyter notebooks. They do not need to be set globally in your system environment.
-
-**Note:** If you have API keys already set in your system environment, they may conflict with the ones in your .env file. The `env_utils.py` verification script will detect and warn you about such conflicts. By default, `load_dotenv()` does not override existing environment variables.
-
 
 ### Development Environment
 
