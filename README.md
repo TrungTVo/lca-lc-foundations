@@ -111,7 +111,8 @@ Ensure you are in the notebooks/module-1 or notebooks/module-3 directory
 <summary>Using uv (recommended)</summary>
 
 ```bash
-uv run langgraph dev
+rm -rf notebooks/module-1/.langgraph_api
+uv run langgraph dev --tunnel --no-reload --no-browser
 ```
 
 </details>
@@ -121,7 +122,8 @@ uv run langgraph dev
 
 ```bash
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-langgraph dev
+rm -rf notebooks/module-1/.langgraph_api
+langgraph dev --tunnel --no-reload --no-browser
 ```
 
 </details>
