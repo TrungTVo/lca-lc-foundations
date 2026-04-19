@@ -1,16 +1,14 @@
+import os
 from dotenv import load_dotenv
-
-load_dotenv()
-
 from mcp.server.fastmcp import FastMCP
 from tavily import TavilyClient
 from typing import Dict, Any
 from requests import get
 
-
+load_dotenv()
 mcp = FastMCP("mcp_server")
 
-tavily_client = TavilyClient()
+tavily_client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 
 # Tool for searching the web
@@ -18,7 +16,7 @@ tavily_client = TavilyClient()
 def search_web(query: str) -> Dict[str, Any]:
     """Search the web for information"""
 
-    results = tavily_client.search(query)
+    results = tavily_client.search(query=query, search_depth="basic", max_results=4, include_answer='basic')
 
     return results
 
